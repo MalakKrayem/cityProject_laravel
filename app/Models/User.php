@@ -12,6 +12,12 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    //User belong to city
+
+    public function city(){
+        return $this->belongsTo(City::class,"city_id","id");
+    }
+
     /**
      * The attributes that are mass assignable.
      *
