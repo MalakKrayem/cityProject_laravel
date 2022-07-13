@@ -22,7 +22,14 @@ return [
     "city_name" => "اسم المدينة",
     "enter_name" => "ادخل الاسم",
     "enter_email" => "ادخل البريد الالكتروني",
-    "enter_password" => "ادخل كلمة المرور"
+    "enter_password" => "ادخل كلمة المرور",
+    "settings" => "الاعدادات",
+    "logout" => "تسجيل الخروج",
+    "roles_permission" => "القواعد و الاذونات",
+    "roles" => "القواعد",
+    "permissions" => "الاذونات"
+
+
 
 
 

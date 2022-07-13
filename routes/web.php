@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,8 +21,25 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('cms.temp');
 });
-Route::prefix("cms/admin")->group(function(){
-    Route::resource("/cities", CityController::class);
-    Route::resource("/users", UserController::class);
+Route::prefix("cms")->middleware("guest:web,admin")->group(function () {
+    Route::get("{guard}/login", [AuthController::class, "showLogin"])->name("login");
+    Route::post("login", [AuthController::class, "login"])->name("doLogin");
+}); 
+Route::prefix("cms/admin")->middleware("auth:web,admin")->group(function(){
+    Route::resource("cities",CityController::class);
+    Route::resource("users", UserController::class);
 
 });
+
+Route::prefix("cms/admin")->middleware("auth:admin")->group(function(){
+    Route::resource("roles", RoleController::class);
+    Route::resource("permissions", PermissionController::class);
+});
+
+Route::prefix("cms/admin")->middleware("auth:web,admin")->group(function(){
+    Route::get("logout",[AuthController::class,"logout"])->name("logout");
+});
+
+Route::get("news/title",function(){
+    echo "News Content Preview";
+})->middleware("age:10");

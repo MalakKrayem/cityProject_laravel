@@ -14,8 +14,9 @@ class User extends Authenticatable
 
     //User belong to city
 
-    public function city(){
-        return $this->belongsTo(City::class,"city_id","id");
+    public function city()
+    {
+        return $this->belongsTo(City::class, "city_id", "id");
     }
 
     /**
