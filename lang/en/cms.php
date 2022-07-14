@@ -28,8 +28,12 @@ return [
     "logout" => "Logout",
     "roles_permission" => "Roles & Permission",
     "roles" => "Roles",
+    "role" => "Role",
     "permissions" => "Permissions",
-    "guard_name" => "Guard name"
+    "guard_name" => "Guard name",
+    "assigned_permissions" => "Role Permissions",
+    "assigned" => "Assigned",
+    "admins"=>"Admins"
 
 
 ];

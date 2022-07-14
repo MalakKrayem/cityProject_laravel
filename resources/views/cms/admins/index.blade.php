@@ -1,5 +1,5 @@
 @extends("cms.parent")
-@section("title",__("cms.roles"))
+@section("title",__("cms.admins"))
 @section("subTitle",__("cms.index"))
 @section("styles")
 @endsection
@@ -20,31 +20,28 @@
                 <tr>
                   <th style="width: 10px">#</th>
                   <th>{{__('cms.name')}}</th>
-                  <th>{{__("cms.guard_name")}}</th>
-                  <th>{{__("cms.permissions")}}</th>
+                  <th>{{__("cms.email")}}</th>
+                  <th>{{__("cms.role")}}</th>
                   <th>{{__("cms.created_at")}}</th>
                   <th>{{__("cms.updated_at")}}</th>
                   <th style="width: 40px">Setting</th>
                 </tr>
               </thead>
               <tbody>
-                @foreach ($roles as $role )
+                @foreach ($admins as $admin )
                 <tr>
                   <td>{{$loop->iteration}}</td>
-                  <td>{{$role->name}}</td>
-                  <td>{{$role->guard_name}}</td>
-                  <td><a href="{{route("roles.show",$role->id)}}" class="btn btn-app bg-info">
-                      <span class="badge bg-danger">{{$role->permissions_count}}</span>
-                      <i class="fas fa-heart"></i> {{__("cms.permissions")}}
-                    </a></td>
-                  <td>{{$role->created_at}}</td>
-                  <td>{{$role->updated_at}}</td>
+                  <td>{{$admin->name}}</td>
+                  <td>{{$admin->email}}</td>
+                  <td>{{$admin->roles[0]->name}}</td>
+                  <td>{{$admin->created_at}}</td>
+                  <td>{{$admin->updated_at}}</td>
                   <td>
                     <div class="btn-group">
-                      <a href="{{route("roles.edit",$role->id)}}" class="btn btn-info">
+                      <a href="{{route("admins.edit",$admin->id)}}" class="btn btn-info">
                         <i class="fas fa-edit"></i>
                       </a>
-                      <a href="#" onclick="confirmDelete('{{$role->id}}',this)" type="submit" class="btn btn-danger">
+                      <a href="#" onclick="confirmDelete('{{$admin->id}}',this)" type="submit" class="btn btn-danger">
                         <i class="fas fa-trash"></i>
                       </a>
                     </div>
@@ -86,26 +83,11 @@
     }).then((result) => {
     if (result.isConfirmed) {
       performeDelete(id,reference);
-      let timerInterval;
-      Swal.fire({
-      icon:"success",
-      title: 'Deleted Successfuly!',
-      html: '',
-      timer: 1000,
-      willClose: () => {
-      clearInterval(timerInterval)
-      },
-      }).then((result) => {
-      /* Read more about handling dismissals below */
-      if (result.dismiss === Swal.DismissReason.timer) {
-      console.log('I was closed by the timer')
-      }
-      })
     }
     });
   }
   function performeDelete(id,reference){
-        axios.delete('/cms/admin/roles/'+id)
+        axios.delete('/cms/admin/admins/'+id)
         .then(function (response) {
             toastr.success(response.data.message);
             reference.closest("tr").remove();

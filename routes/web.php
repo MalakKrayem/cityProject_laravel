@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\PermissionController;
@@ -34,6 +35,8 @@ Route::prefix("cms/admin")->middleware("auth:web,admin")->group(function(){
 Route::prefix("cms/admin")->middleware("auth:admin")->group(function(){
     Route::resource("roles", RoleController::class);
     Route::resource("permissions", PermissionController::class);
+    Route::post("/role/update-permission",[RoleController::class,"updateRolePermission"]);
+    Route::resource("admins",AdminController::class);
 });
 
 Route::prefix("cms/admin")->middleware("auth:web,admin")->group(function(){

@@ -45,12 +45,16 @@
                   <td>{{$user->updated_at}}</td>
                   <td>
                     <div class="btn-group">
+                      @can("Update-User")
                       <a href="{{route("users.edit",$user->id)}}" class="btn btn-info">
                         <i class="fas fa-edit"></i>
                       </a>
+                      @endcan
+                      @can("Delete-User")
                       <a href="#" onclick="confirmDelete('{{$user->id}}',this)" type="submit" class="btn btn-danger">
                         <i class="fas fa-trash"></i>
                       </a>
+                      @endcan
                     </div>
                   </td>
                 </tr>

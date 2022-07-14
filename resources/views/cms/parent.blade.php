@@ -183,11 +183,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </div>
           @auth
           <div class="info">
-            <a href="#" class="d-block">{{auth()->user()->name}}</a>
+            <a href="#" class="d-block">{{auth()->user()->name}} <br> {{auth()->user()->roles[0]->name}}</a>
           </div>
-            
           @endauth
-          
+
         </div>
 
         <!-- SidebarSearch Form -->
@@ -207,7 +206,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-            <li class="nav-item menu-open">
+            <li class="nav-item ">
               <a href="#" class="nav-link active">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
@@ -239,8 +238,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </p>
               </a>
             </li>
+            @canany(["Create-Roles","Read-Roles","Create-Permission","Read-Permission"])
             <li class="nav-header">{{__('cms.roles_permission')}}</li>
-            <li class="nav-item menu-open">
+            @canany(["Create-Roles","Read-Roles"])
+            <li class="nav-item ">
               <a href="#" class="nav-link ">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
@@ -249,21 +250,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </p>
               </a>
               <ul class="nav nav-treeview">
+                @can("Read-Roles")
                 <li class="nav-item">
                   <a href="{{route("roles.index")}}" class="nav-link ">
                     <i class="far fa-circle nav-icon"></i>
                     <p>{{__("cms.index")}}</p>
                   </a>
                 </li>
+                @endcan
+                @can("Create-Role")
                 <li class="nav-item">
                   <a href="{{route("roles.create")}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>{{__("cms.create")}}</p>
                   </a>
                 </li>
+                @endcan
               </ul>
             </li>
-            <li class="nav-item menu-open">
+            @endcanany
+            @canany(["Create-Permission","Read-Permission"])
+            <li class="nav-item ">
               <a href="#" class="nav-link ">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
@@ -272,22 +279,30 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </p>
               </a>
               <ul class="nav nav-treeview">
+                @can("Read-Permissions")
                 <li class="nav-item">
                   <a href="{{route("permissions.index")}}" class="nav-link ">
                     <i class="far fa-circle nav-icon"></i>
                     <p>{{__("cms.index")}}</p>
                   </a>
                 </li>
+                @endcan
+                @can("Create-Permission")
                 <li class="nav-item">
                   <a href="{{route("permissions.create")}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>{{__("cms.create")}}</p>
                   </a>
                 </li>
+                @endcan
               </ul>
             </li>
+            @endcanany
+            @endcanany
+            @canany(["Read-Cities","Create-City"])
             <li class="nav-header">{{__('cms.content_managment')}}</li>
-            <li class="nav-item menu-open">
+            @canany(["Read-Cities","Create-City"])
+            <li class="nav-item ">
               <a href="#" class="nav-link ">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
@@ -296,22 +311,59 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </p>
               </a>
               <ul class="nav nav-treeview">
+                @can("Read-Cities")
                 <li class="nav-item">
                   <a href="{{route("cities.index")}}" class="nav-link ">
                     <i class="far fa-circle nav-icon"></i>
                     <p>{{__("cms.index")}}</p>
                   </a>
                 </li>
+                @endcan
+                @can("Create-City")
                 <li class="nav-item">
                   <a href="{{route("cities.create")}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>{{__("cms.create")}}</p>
                   </a>
                 </li>
+                @endcan
               </ul>
             </li>
+            @endcanany
+            @endcanany
+            @canany(["Read-Users","Create-User","Read-Admins","Create-Admins"])
             <li class="nav-header">{{__('cms.hr')}}</li>
-            <li class="nav-item menu-open">
+            @canany(["Read-Admins","Create-Admin"])
+            <li class="nav-item ">
+              <a href="#" class="nav-link ">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  {{__("cms.admins")}}
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                @can("Read-Admins")
+                <li class="nav-item">
+                  <a href="{{route("admins.index")}}" class="nav-link ">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>{{__("cms.index")}}</p>
+                  </a>
+                </li>
+                @endcan
+                @can("Create-Admin")
+                <li class="nav-item">
+                  <a href="{{route("admins.create")}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>{{__("cms.create")}}</p>
+                  </a>
+                </li>
+                @endcan
+              </ul>
+            </li>
+            @endcanany
+            @canany(["Read-Users","Create-User"])
+            <li class="nav-item ">
               <a href="#" class="nav-link ">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
@@ -320,26 +372,34 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </p>
               </a>
               <ul class="nav nav-treeview">
+                @can("Read-Users")
                 <li class="nav-item">
                   <a href="{{route("users.index")}}" class="nav-link ">
                     <i class="far fa-circle nav-icon"></i>
                     <p>{{__("cms.index")}}</p>
                   </a>
                 </li>
+                @endcan
+                @can("Create-User")
                 <li class="nav-item">
                   <a href="{{route("users.create")}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>{{__("cms.create")}}</p>
                   </a>
                 </li>
+                @endcan
               </ul>
+            </li>
+            @endcanany
+            @endcanany
+              
             <li class="nav-header">{{__('cms.settings')}}</li>
-              <li class="nav-item">
-                <a href="{{route("logout")}}" class="nav-link">
-                  <i class="nav-icon far fa-circle text-danger"></i>
-                  <p class="text">{{__("cms.logout")}}</p>
-                </a>
-              </li>
+            <li class="nav-item">
+              <a href="{{route("logout")}}" class="nav-link">
+                <i class="nav-icon far fa-circle text-danger"></i>
+                <p class="text">{{__("cms.logout")}}</p>
+              </a>
+            </li>
             </li>
           </ul>
         </nav>

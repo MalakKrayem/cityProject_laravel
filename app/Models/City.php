@@ -9,10 +9,13 @@ class City extends Model
 {
     use HasFactory;
 
+    
+
     //City hasMany users
 
-    public function users(){
-        return $this->hasMany(User::class,"city_id","id");
+    public function users()
+    {
+        return $this->hasMany(User::class, "city_id", "id");
     }
 
     public function getActiveStatusAttribute()

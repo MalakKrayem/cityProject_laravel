@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class CityController extends Controller
 {
+
+    public function __construct()
+    {
+        //$this->authorizeResource(City::class, "city");
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,6 +19,7 @@ class CityController extends Controller
      */
     public function index()
     {
+        $this->authorize("viewAny",City::class);
         $cities = City::all();
         return response()->view("cms.cities.index", compact("cities"));
     }
@@ -25,6 +31,7 @@ class CityController extends Controller
      */
     public function create()
     {
+        $this->authorize("create", City::class);
         return response()->view("cms.cities.create");
     }
 
@@ -36,6 +43,7 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize("create", City::class);
         $request->validate([
             "name_en" => "unique:cities|min:3|max:20|required|string",
             "name_ar" => "unique:cities|min:3|max:20|required|string",
@@ -61,7 +69,8 @@ class CityController extends Controller
      */
     public function show(City $city)
     {
-        //
+        $this->authorize("view", $city);
+        
     }
 
     /**
@@ -72,6 +81,7 @@ class CityController extends Controller
      */
     public function edit(City $city)
     {
+        $this->authorize("update", $city);
         return response()->view("cms.cities.update", compact("city"));
     }
 
@@ -84,6 +94,7 @@ class CityController extends Controller
      */
     public function update(Request $request, City $city)
     {
+        $this->authorize("update", $city);
         $request->validate([
             "name_en" => "min:3|max:20|required|string",
             "name_ar" => "min:3|max:20|required|string",
@@ -108,6 +119,7 @@ class CityController extends Controller
      */
     public function destroy(City $city)
     {
+        $this->authorize("delete", $city);
         $isDelete = $city->delete();
         if ($isDelete) {
             return redirect()->back()->with("success", "The city deleted successfuly!");

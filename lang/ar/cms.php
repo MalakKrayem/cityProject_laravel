@@ -25,9 +25,15 @@ return [
     "enter_password" => "ادخل كلمة المرور",
     "settings" => "الاعدادات",
     "logout" => "تسجيل الخروج",
-    "roles_permission" => "القواعد و الاذونات",
-    "roles" => "القواعد",
-    "permissions" => "الاذونات"
+    "roles_permission" => "المناصب و الاذونات",
+    "roles" => "المناصب",
+    "permissions" => "الاذونات",
+    "assigned_permissions" => "أذونات المنصب",
+    "assigned" => "الملحق",
+    "admins" => "الادمنز"
+
+
+
 
 
 
