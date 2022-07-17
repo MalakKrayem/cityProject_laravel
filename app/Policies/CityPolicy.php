@@ -18,7 +18,7 @@ class CityPolicy
      */
     public function viewAny()
     {
-        $guard=auth("admin")->check() ? "admin" : "web";
+        $guard = auth("admin")->check() ? "admin" : "web";
         return auth($guard)->user()->hasPermissionTo("Read-Cities") ? $this->allow() : $this->deny();
     }
 
@@ -29,7 +29,7 @@ class CityPolicy
      * @param  \App\Models\City  $city
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view( City $city)
+    public function view(City $city)
     {
         $guard = auth("admin")->check() ? "admin" : "web";
         return auth($guard)->user()->hasPermissionTo("Read-Cities") ? $this->allow() : $this->deny();
@@ -54,7 +54,7 @@ class CityPolicy
      * @param  \App\Models\City  $city
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update( City $city)
+    public function update(City $city)
     {
         $guard = auth("admin")->check() ? "admin" : "web";
         return auth($guard)->user()->hasPermissionTo("Update-City") ? $this->allow() : $this->deny();
@@ -67,7 +67,7 @@ class CityPolicy
      * @param  \App\Models\City  $city
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete( City $city)
+    public function delete(City $city)
     {
         $guard = auth("admin")->check() ? "admin" : "web";
         return auth($guard)->user()->hasPermissionTo("Delete-City") ? $this->allow() : $this->deny();
@@ -80,7 +80,7 @@ class CityPolicy
      * @param  \App\Models\City  $city
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore( City $city)
+    public function restore(City $city)
     {
         //
     }
@@ -92,7 +92,7 @@ class CityPolicy
      * @param  \App\Models\City  $city
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete( City $city)
+    public function forceDelete(City $city)
     {
         //
     }

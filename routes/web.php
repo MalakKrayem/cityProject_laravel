@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('cms.temp');
+    return redirect("cms/admin/login");
 });
 Route::prefix("cms")->middleware("guest:web,admin")->group(function () {
     Route::get("{guard}/login", [AuthController::class, "showLogin"])->name("login");
