@@ -72,15 +72,15 @@ class ApiAuthController extends Controller
             $user = User::where("email", $request->input("email"))->first();
             //$this->revokePreviousTokens($user->id, 2);
             $user->setAttribute("token", $response->json()["access_token"]);
-            return response()->json(["message"=>"Logged in successfully!","data"=>$user],Response::HTTP_OK);
+            return response()->json(["message" => "Logged in successfully!", "data" => $user], Response::HTTP_OK);
             //return $response;
         } catch (Exception $ex) {
             //return $response;
-            return response()->json(["message"=> $response()->json()["message"]],Response::HTTP_BAD_REQUEST);
+            return response()->json(["message" => $response()->json()["message"]], Response::HTTP_BAD_REQUEST);
         }
     }
 
-    private function revokePreviousTokens($userId, $clientId=1)
+    private function revokePreviousTokens($userId, $clientId = 1)
     {
         DB::table("oauth_access_tokens")->where("user_id", "=", $userId)->where("client_id", "=", $clientId)->update(["revoked" => true]);
     }

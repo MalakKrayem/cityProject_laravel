@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\SocialController;
+use App\Http\Controllers\Auth\SocialLoginController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\PermissionController;
@@ -23,7 +25,7 @@ Route::get('/', function () {
     return redirect("cms/admin/login");
 });
 Route::prefix("cms")->middleware("guest:web,admin")->group(function () {
-    Route::get("{guard}/login", [AuthController::class, "showLogin"])->name("login");
+    Route::get("{guard}/login", [AuthController::class, "showLogin"])->name("login")->where(["guard"=>"web|admin"]);
     Route::post("login", [AuthController::class, "login"])->name("doLogin");
 }); 
 Route::prefix("cms/admin")->middleware("auth:web,admin")->group(function(){
@@ -43,6 +45,11 @@ Route::prefix("cms/admin")->middleware("auth:web,admin")->group(function(){
     Route::get("logout",[AuthController::class,"logout"])->name("logout");
 });
 
-Route::get("news/title",function(){
-    echo "News Content Preview";
-})->middleware("age:10");
+Route::get('home',function(){
+    return view("welcome");
+})->name("home")->middleware("auth:web,admin");
+
+Route::get('auth/{provider}/redirect', [SocialLoginController::class,'redirect'])->name('auth.socialaite.redirect');
+Route::get('auth/{provider}/callback', [SocialLoginController::class, 'callback'])->name('auth.socialaite.callback');
+Route::get('auth/{provider}/user', [SocialController::class, 'index'])->name('auth.socialaite.index');
+

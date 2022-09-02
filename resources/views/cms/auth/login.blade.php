@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="{{asset('cms/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('cms/dist/css/adminlte.min.css')}}">
-  <link rel="stylesheet" href="{{asset("cms/plugins/toastr/toastr.min.css")}}">
+  <link rel="stylesheet" href="{{asset(" cms/plugins/toastr/toastr.min.css")}}">
 </head>
 
 <body class="hold-transition login-page">
@@ -60,7 +60,15 @@
             <!-- /.col -->
           </div>
         </form>
-
+        <div class="social-auth-links text-center mb-3">
+          <p>- OR -</p>
+          <a href="{{route('auth.socialaite.redirect','facebook')}}" class="btn btn-block btn-primary">
+            <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+          </a>
+          <a href="{{route('auth.socialaite.redirect','google')}}" class="btn btn-block btn-danger">
+            <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+          </a>
+        </div>
 
         <!-- /.social-auth-links -->
 
@@ -82,7 +90,7 @@
   <!-- AdminLTE App -->
   <script src="{{asset('cms/dist/js/adminlte.min.js')}}"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="{{asset("cms/plugins/toastr/toastr.min.js")}}"></script>
+  <script src="{{asset(" cms/plugins/toastr/toastr.min.js")}}"></script>
   <script>
     function performeLogin(){
         axios.post('/cms/login', {

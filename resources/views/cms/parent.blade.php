@@ -17,7 +17,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{asset('cms/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('cms/dist/css/adminlte.min.css')}}">
-  <link rel="stylesheet" href="{{asset("cms/plugins/toastr/toastr.min.css")}}">
+  <link rel="stylesheet" href="{{asset(" cms/plugins/toastr/toastr.min.css")}}">
   @yield("styles")
 </head>
 
@@ -252,7 +252,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <ul class="nav nav-treeview">
                 @can("Read-Roles")
                 <li class="nav-item">
-                  <a href="{{route("roles.index")}}" class="nav-link ">
+                  <a href="{{route(" roles.index")}}" class="nav-link ">
                     <i class="far fa-circle nav-icon"></i>
                     <p>{{__("cms.index")}}</p>
                   </a>
@@ -260,7 +260,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 @endcan
                 @can("Create-Role")
                 <li class="nav-item">
-                  <a href="{{route("roles.create")}}" class="nav-link">
+                  <a href="{{route(" roles.create")}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>{{__("cms.create")}}</p>
                   </a>
@@ -281,7 +281,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <ul class="nav nav-treeview">
                 @can("Read-Permissions")
                 <li class="nav-item">
-                  <a href="{{route("permissions.index")}}" class="nav-link ">
+                  <a href="{{route(" permissions.index")}}" class="nav-link ">
                     <i class="far fa-circle nav-icon"></i>
                     <p>{{__("cms.index")}}</p>
                   </a>
@@ -289,7 +289,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 @endcan
                 @can("Create-Permission")
                 <li class="nav-item">
-                  <a href="{{route("permissions.create")}}" class="nav-link">
+                  <a href="{{route(" permissions.create")}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>{{__("cms.create")}}</p>
                   </a>
@@ -313,7 +313,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <ul class="nav nav-treeview">
                 @can("Read-Cities")
                 <li class="nav-item">
-                  <a href="{{route("cities.index")}}" class="nav-link ">
+                  <a href="{{route(" cities.index")}}" class="nav-link ">
                     <i class="far fa-circle nav-icon"></i>
                     <p>{{__("cms.index")}}</p>
                   </a>
@@ -321,7 +321,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 @endcan
                 @can("Create-City")
                 <li class="nav-item">
-                  <a href="{{route("cities.create")}}" class="nav-link">
+                  <a href="{{route(" cities.create")}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>{{__("cms.create")}}</p>
                   </a>
@@ -345,7 +345,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <ul class="nav nav-treeview">
                 @can("Read-Admins")
                 <li class="nav-item">
-                  <a href="{{route("admins.index")}}" class="nav-link ">
+                  <a href="{{route(" admins.index")}}" class="nav-link ">
                     <i class="far fa-circle nav-icon"></i>
                     <p>{{__("cms.index")}}</p>
                   </a>
@@ -353,7 +353,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 @endcan
                 @can("Create-Admin")
                 <li class="nav-item">
-                  <a href="{{route("admins.create")}}" class="nav-link">
+                  <a href="{{route(" admins.create")}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>{{__("cms.create")}}</p>
                   </a>
@@ -374,7 +374,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
               <ul class="nav nav-treeview">
                 @can("Read-Users")
                 <li class="nav-item">
-                  <a href="{{route("users.index")}}" class="nav-link ">
+                  <a href="{{route(" users.index")}}" class="nav-link ">
                     <i class="far fa-circle nav-icon"></i>
                     <p>{{__("cms.index")}}</p>
                   </a>
@@ -382,7 +382,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 @endcan
                 @can("Create-User")
                 <li class="nav-item">
-                  <a href="{{route("users.create")}}" class="nav-link">
+                  <a href="{{route(" users.create")}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>{{__("cms.create")}}</p>
                   </a>
@@ -392,10 +392,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </li>
             @endcanany
             @endcanany
-              
+
             <li class="nav-header">{{__('cms.settings')}}</li>
             <li class="nav-item">
-              <a href="{{route("logout")}}" class="nav-link">
+              <a href="{{route(" logout")}}" class="nav-link">
                 <i class="nav-icon far fa-circle text-danger"></i>
                 <p class="text">{{__("cms.logout")}}</p>
               </a>
@@ -465,7 +465,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- AdminLTE App -->
   <script src="{{asset('cms/dist/js/adminlte.min.js')}}"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="{{asset("cms/plugins/toastr/toastr.min.js")}}"></script>
+  <script src="{{asset(" cms/plugins/toastr/toastr.min.js")}}"></script>
   @yield("scripts")
 </body>
 

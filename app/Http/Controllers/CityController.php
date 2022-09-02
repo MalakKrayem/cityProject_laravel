@@ -20,15 +20,14 @@ class CityController extends Controller
      */
     public function index()
     {
-        if(auth("user-api")->check()){
+        if (auth("user-api")->check()) {
             $cities = City::where("active", "=", 1)->get();
             return response()->json(["status" => 200, "message" => "Sucess", "data" => $cities], Response::HTTP_OK);
-        }else{
+        } else {
             $this->authorize("viewAny", City::class);
             $cities = City::all();
             return response()->view("cms.cities.index", compact("cities"));
         }
-        
     }
 
     /**
@@ -77,7 +76,6 @@ class CityController extends Controller
     public function show(City $city)
     {
         $this->authorize("view", $city);
-        
     }
 
     /**

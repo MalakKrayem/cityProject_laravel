@@ -9,26 +9,25 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
 {
-    public function showLogin(Request $request)
+    public function showLogin($guard)
     {
+        return response()->view("cms.auth.login", ["guard" => $guard]);
         //$request->request->add(["guard"=>$request->guard]);
-        
-        $data=["guard"=>$request->guard];
-        $validator=Validator($data,[
-            "guard"=>"required|string|in:admin,web"
-        ]);
-        if(!$validator->fails()){
-            return response()->view("cms.auth.login",["guard"=>$request->guard]); 
-        }else{
-            abort(Response::HTTP_NOT_FOUND);
 
-        }
-
+        // $data = ["guard" => $request->guard];
+        // $validator = Validator($data, [
+        //     "guard" => "required|string|in:admin,web"
+        // ]);
+        // if (!$validator->fails()) {
+        //     return response()->view("cms.auth.login", ["guard" => $request->guard]);
+        // } else {
+        //     abort(Response::HTTP_NOT_FOUND);
+        // }
     }
 
     public function login(Request $request)
     {
-        $table= $request->guard == "web" ? "users" : "admins"; 
+        $table = $request->guard == "web" ? "users" : "admins";
         $validator = Validator($request->all(), [
             "email" => "required|email",
             "password" => "required|string|min:3",
@@ -50,9 +49,9 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        $guard=auth("web")->check() ? "web" :"admin";
+        $guard = auth("web")->check() ? "web" : "admin";
         Auth::guard($guard)->logout();
         $request->session()->invalidate();
-        return redirect()->route("login",$guard);
+        return redirect()->route("login", $guard);
     }
 }
