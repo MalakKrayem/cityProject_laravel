@@ -38,7 +38,7 @@ return [
     'facebook' => [
         'client_id' => env('FACEBOOK_CLIENT_ID'),
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-        'redirect' => 'http://127.0.0.1:8000/auth/google/callback'
+        'redirect' => 'http://127.0.0.1:8000/auth/facebook/callback'
     ]
 
 ];
